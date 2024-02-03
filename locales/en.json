@@ -1,0 +1,11 @@
+{
+  "language": "Language",
+  "tab_label_home": "Home",
+  "tab_label_notifications": "Notifications",
+  "tab_label_messages": "Messages",
+  "tab_label_profile": "Profile",
+  "username": "Username",
+  "email_address": "Email address",
+  "password": "Password",
+  "login": "Login"
+}
