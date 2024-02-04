@@ -1,127 +1,163 @@
 import React from 'react';
-import {StyleSheet, Text} from 'react-native';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import Icon from 'react-native-vector-icons/Ionicons';
+import {StyleSheet} from 'react-native';
 import {useTranslation} from 'react-i18next';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 import type {RootStackParamList} from './types';
+import {mainColor, lightColor} from '../consts/style';
 
-import HomeScreen from './tabs/Home';
-import ProfileScreen from './tabs/Profile';
+import ExploreScreen from './tabs/Explore';
 import MessagesScreen from './tabs/Messages';
-import NotificationsScreen from './tabs/Notifications';
+import ProfileScreen from './tabs/Profile';
+import SettingsScreen from './tabs/Settings';
 
-export type TabsScreenProps = NativeStackScreenProps<
+import {FalconAppBar, FalconText} from '../components';
+import {useStatusBar} from '../contexts/StatusBar';
+
+type TabsScreenProps = NativeStackScreenProps<
   RootStackParamList,
   'tabs-screen'
 >;
 
 const styles = StyleSheet.create({
-  label: {
-    fontFamily: 'Montserrat-Regular',
+  baseLabel: {
     fontSize: 12,
-    fontWeight: '600',
     color: '#fff',
   },
-  labelFocused: {
-    fontFamily: 'Montserrat-Regular',
-    fontSize: 12,
-    fontWeight: 'bold',
-    color: '#fff',
-  },
+  label: {fontWeight: '600'},
+  labelFocused: {fontWeight: 'bold'},
   icon: {
-    color: '#fff',
     fontSize: 24,
+    color: '#fff',
   },
 });
-
 const Tab = createBottomTabNavigator();
 
 const TabsScreen = ({}: TabsScreenProps) => {
   const {t} = useTranslation();
+  const [appBarVisible, setAppBarVisibility] = React.useState(false);
+  const {setBgColor, setStyle} = useStatusBar();
+
+  const showAppBar = () => {
+    if (!appBarVisible) {
+      setAppBarVisibility(true);
+      setBgColor(mainColor);
+      setStyle('light-content');
+    }
+  };
+
+  const hideAppBar = () => {
+    if (appBarVisible) {
+      setAppBarVisibility(false);
+      setBgColor(lightColor);
+      setStyle('dark-content');
+    }
+  };
 
   return (
-    <Tab.Navigator
-      screenOptions={{
-        headerShown: false,
-        tabBarStyle: {
-          backgroundColor: '#E91E63',
-        },
-      }}>
-      <Tab.Screen
-        name="home-screen"
-        component={HomeScreen}
-        options={{
-          title: t('tab_label_home'),
-          tabBarLabel: ({focused}) => (
-            <Text style={focused ? styles.labelFocused : styles.label}>
-              {t('tab_label_home')}
-            </Text>
-          ),
-          tabBarIcon: ({focused}) => (
-            <Icon
-              name={focused ? 'home' : 'home-outline'}
-              style={styles.icon}
-            />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="notifications-screen"
-        component={NotificationsScreen}
-        options={{
-          title: t('tab_label_notifications'),
-          tabBarLabel: ({focused}) => (
-            <Text style={focused ? styles.labelFocused : styles.label}>
-              {t('tab_label_notifications')}
-            </Text>
-          ),
-          tabBarIcon: ({focused}) => (
-            <Icon
-              name={focused ? 'notifications' : 'notifications-outline'}
-              style={styles.icon}
-            />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="messages-screen"
-        component={MessagesScreen}
-        options={{
-          title: t('tab_label_messages'),
-          tabBarLabel: ({focused}) => (
-            <Text style={focused ? styles.labelFocused : styles.label}>
-              {t('tab_label_messages')}
-            </Text>
-          ),
-          tabBarIcon: ({focused}) => (
-            <Icon
-              name={focused ? 'chatbubbles' : 'chatbubbles-outline'}
-              style={styles.icon}
-            />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="profile-screen"
-        component={ProfileScreen}
-        options={{
-          title: t('tab_label_profile'),
-          tabBarLabel: ({focused}) => (
-            <Text style={focused ? styles.labelFocused : styles.label}>
-              {t('tab_label_profile')}
-            </Text>
-          ),
-          tabBarIcon: ({focused}) => (
-            <Icon
-              name={focused ? 'person' : 'person-outline'}
-              style={styles.icon}
-            />
-          ),
-        }}
-      />
-    </Tab.Navigator>
+    <>
+      {appBarVisible && <FalconAppBar />}
+      <Tab.Navigator
+        screenOptions={{
+          headerShown: false,
+          tabBarStyle: {backgroundColor: mainColor},
+        }}>
+        <Tab.Screen
+          name="explore-screen"
+          component={ExploreScreen}
+          listeners={{tabPress: hideAppBar}}
+          options={{
+            title: t('tab_label_explore'),
+            tabBarLabel: ({focused}) => (
+              <FalconText
+                style={{
+                  ...styles.baseLabel,
+                  ...(focused ? styles.label : styles.labelFocused),
+                }}>
+                {t('tab_label_explore')}
+              </FalconText>
+            ),
+            tabBarIcon: ({focused}) => (
+              <Icon
+                name={focused ? 'compass' : 'compass-outline'}
+                style={styles.icon}
+              />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="messages-screen"
+          component={MessagesScreen}
+          listeners={{tabPress: showAppBar}}
+          options={{
+            title: t('tab_label_messages'),
+            tabBarLabel: ({focused}) => (
+              <FalconText
+                style={{
+                  ...styles.baseLabel,
+                  ...(focused ? styles.label : styles.labelFocused),
+                }}>
+                {t('tab_label_messages')}
+              </FalconText>
+            ),
+            tabBarIcon: ({focused}) => (
+              <Icon
+                name={focused ? 'chatbubbles' : 'chatbubbles-outline'}
+                style={styles.icon}
+              />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="profile-screen"
+          component={ProfileScreen}
+          listeners={{tabPress: showAppBar}}
+          options={{
+            title: t('tab_label_profile'),
+            tabBarLabel: ({focused}) => (
+              <FalconText
+                style={{
+                  ...styles.baseLabel,
+                  ...(focused ? styles.label : styles.labelFocused),
+                }}>
+                {t('tab_label_profile')}
+              </FalconText>
+            ),
+            tabBarIcon: ({focused}) => (
+              <Icon
+                name={focused ? 'person' : 'person-outline'}
+                style={styles.icon}
+              />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="settings-screen"
+          component={SettingsScreen}
+          listeners={{tabPress: hideAppBar}}
+          options={{
+            title: t('tab_label_settings'),
+            tabBarLabel: ({focused}) => (
+              <FalconText
+                style={{
+                  ...styles.baseLabel,
+                  ...(focused ? styles.label : styles.labelFocused),
+                }}>
+                {t('tab_label_settings')}
+              </FalconText>
+            ),
+            tabBarIcon: ({focused}) => (
+              <Icon
+                name={focused ? 'settings' : 'settings-outline'}
+                style={styles.icon}
+              />
+            ),
+          }}
+        />
+      </Tab.Navigator>
+    </>
   );
 };
 

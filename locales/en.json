@@ -1,11 +1,14 @@
 {
   "language": "Language",
-  "tab_label_home": "Home",
+  "tab_label_explore": "Explore",
   "tab_label_notifications": "Notifications",
   "tab_label_messages": "Messages",
   "tab_label_profile": "Profile",
-  "username": "Username",
-  "email_address": "Email address",
-  "password": "Password",
-  "login": "Login"
+  "tab_label_settings": "Settings",
+  "input_label_username": "Username",
+  "input_label_email_address": "Email address",
+  "input_label_password": "Password",
+  "btn_label_login": "Log in",
+  "message_login_suggestion": "Please log in to continue",
+  "message_app_is_loading": "App is loading, please wait"
 }

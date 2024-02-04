@@ -3,12 +3,12 @@ import {Box} from '@gluestack-ui/themed';
 
 import {FalconText} from '../../components';
 
-const HomeTabScreen = () => {
+const ExploreTabScreen = () => {
   return (
     <Box p="$5">
-      <FalconText>Home screen</FalconText>
+      <FalconText>Explore screen</FalconText>
     </Box>
   );
 };
 
-export default HomeTabScreen;
+export default ExploreTabScreen;

@@ -3,6 +3,7 @@ import {TouchableOpacityProps} from 'react-native';
 import {Button, ButtonText} from '@gluestack-ui/themed';
 
 import {baseStyle} from './styles';
+import {mainColor} from '../../consts/style';
 
 interface FalconButtonProps extends TouchableOpacityProps {
   children: React.ReactNode;
@@ -10,7 +11,7 @@ interface FalconButtonProps extends TouchableOpacityProps {
 
 const FalconButton = (props: FalconButtonProps) => {
   return (
-    <Button onPress={props.onPress}>
+    <Button onPress={props.onPress} bgColor={mainColor}>
       <ButtonText style={baseStyle.text}>{props.children}</ButtonText>
     </Button>
   );

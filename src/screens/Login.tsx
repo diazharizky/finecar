@@ -16,12 +16,27 @@ const LoginScreen = ({navigation}: LoginScreenProps) => {
   const {t} = useTranslation();
 
   return (
-    <Box p="$5">
-      <VStack space="md">
-        <FalconInput placeholder={t('username') + '/' + t('email_address')} />
-        <FalconInput type="password" placeholder={t('password')} />
+    <Box
+      style={{
+        flex: 1,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}>
+      <VStack
+        p="$5"
+        space="md"
+        style={{
+          width: '100%',
+        }}>
+        <FalconInput
+          placeholder={
+            t('input_label_username') + '/' + t('input_label_email_address')
+          }
+        />
+        <FalconInput type="password" placeholder={t('input_label_password')} />
         <FalconButton onPress={() => navigation.goBack()}>
-          {t('login')}
+          {t('btn_label_login')}
         </FalconButton>
       </VStack>
     </Box>

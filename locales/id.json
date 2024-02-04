@@ -1,11 +1,14 @@
 {
   "language": "Bahasa",
-  "tab_label_home": "Beranda",
+  "tab_label_explore": "Eksplor",
   "tab_label_notifications": "Notifikasi",
   "tab_label_messages": "Perpesanan",
   "tab_label_profile": "Profil",
-  "username": "Username",
-  "email_address": "Alamat email",
-  "password": "Kata sandi",
-  "login": "Masuk"
+  "tab_label_settings": "Pengaturan",
+  "input_label_username": "Username",
+  "input_label_email_address": "Alamat email",
+  "input_label_password": "Kata sandi",
+  "btn_label_login": "Login",
+  "message_login_suggestion": "Silahkan login untuk melanjutkan",
+  "message_app_is_loading": "Sedang memuat, mohon tunggu"
 }
