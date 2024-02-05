@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {Box} from '@gluestack-ui/themed';
 import {useTranslation} from 'react-i18next';
+import {useIsFocused} from '@react-navigation/native';
 
 import type {RootStackParamList} from '../types';
 import {FalconText, FalconButton} from '../../components';
@@ -12,6 +13,11 @@ const ProfileTabScreen = ({
 }: NativeStackScreenProps<RootStackParamList>) => {
   const {t} = useTranslation();
   const {data, loading} = useAuth();
+  const isFocused = useIsFocused();
+
+  useEffect(() => {
+    console.log('entering profile screen', isFocused);
+  }, [isFocused]);
 
   return (
     <>

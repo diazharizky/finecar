@@ -1,31 +1,25 @@
 import React, {createContext, useState, useContext} from 'react';
 import type {StatusBarStyle} from 'react-native';
 
+import {lightColor} from '../consts/style';
+
 type StatusBarContextProps = {
   bgColor?: string;
   style?: StatusBarStyle;
-  setBgColor(newBgColor: string): void;
-  setStyle(newStyle: StatusBarStyle): void;
+  setBgColor?(newCol: string): void;
+  setStyle?(newStyle: StatusBarStyle): void;
 };
 
 const StatusBarContext = createContext<StatusBarContextProps>(
   {} as StatusBarContextProps,
 );
 
-const StatusBarProvider = ({
-  children,
-  defaultBgColor,
-  defaultStyle,
-}: {
-  children: React.ReactNode;
-  defaultBgColor: string;
-  defaultStyle: StatusBarStyle;
-}) => {
-  const [bgColor, setBgColor] = useState(defaultBgColor);
-  const [style, setStyle] = useState(defaultStyle);
+const StatusBarProvider = ({children}: {children: React.ReactNode}) => {
+  const [bgColor, setBgColor] = useState<string>(lightColor);
+  const [style, setStyle] = useState<StatusBarStyle>('dark-content');
 
   return (
-    <StatusBarContext.Provider value={{setBgColor, setStyle, bgColor, style}}>
+    <StatusBarContext.Provider value={{bgColor, style, setBgColor, setStyle}}>
       {children}
     </StatusBarContext.Provider>
   );

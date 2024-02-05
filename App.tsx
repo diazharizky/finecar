@@ -7,23 +7,19 @@ import {config} from '@gluestack-ui/config';
 import {GluestackUIProvider} from '@gluestack-ui/themed';
 import {NavigationContainer} from '@react-navigation/native';
 
-import {StatusBarProvider} from './src/contexts/StatusBar';
 import {StatusBar} from './src/components';
+import {Composed as ComposedProviders} from './src/contexts';
 
 import type {RootStackParamList} from './src/screens/types';
 import TabsScreen from './src/screens/Tabs';
 import LoginScreen from './src/screens/Login';
-
-import {lightColor} from './src/consts/style';
 
 const RootStack = createStackNavigator<RootStackParamList>();
 
 const App = () => {
   return (
     <SafeAreaProvider style={{flex: 1}}>
-      <StatusBarProvider
-        defaultBgColor={lightColor}
-        defaultStyle="dark-content">
+      <ComposedProviders>
         <StatusBar />
         <GluestackUIProvider config={config}>
           <NavigationContainer>
@@ -33,7 +29,7 @@ const App = () => {
             </RootStack.Navigator>
           </NavigationContainer>
         </GluestackUIProvider>
-      </StatusBarProvider>
+      </ComposedProviders>
     </SafeAreaProvider>
   );
 };

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {Box, VStack} from '@gluestack-ui/themed';
 import {useTranslation} from 'react-i18next';
@@ -6,14 +6,22 @@ import {useTranslation} from 'react-i18next';
 import {FalconInput, FalconButton} from '../components';
 
 import type {RootStackParamList} from './types';
+import {useStatusBar} from '../contexts/StatusBar';
+import {lightColor} from '../consts/style';
 
-export type LoginScreenProps = NativeStackScreenProps<
+type LoginScreenProps = NativeStackScreenProps<
   RootStackParamList,
   'login-screen'
 >;
 
 const LoginScreen = ({navigation}: LoginScreenProps) => {
   const {t} = useTranslation();
+  const {setBgColor, setStyle} = useStatusBar();
+
+  useEffect(() => {
+    setBgColor(lightColor);
+    setStyle('dark-content');
+  }, []);
 
   return (
     <Box
