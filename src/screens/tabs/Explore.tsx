@@ -12,9 +12,11 @@ const ExploreTabScreen = () => {
   const {setVisibility} = useAppBar();
 
   useEffect(() => {
-    setBgColor!(lightColor);
-    setStyle!('dark-content');
-    setVisibility!(false);
+    if (isFocused) {
+      setBgColor!(lightColor);
+      setStyle!('dark-content');
+      setVisibility!(false);
+    }
   }, [isFocused]);
 
   return (
