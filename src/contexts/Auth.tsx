@@ -1,5 +1,6 @@
 import React, {createContext, useState, useContext, useEffect} from 'react';
 import asyncStorage from '@react-native-async-storage/async-storage';
+
 import type {AuthData} from '../services/auth';
 import {authService} from '../services/auth';
 
@@ -20,7 +21,7 @@ const AuthProvider = ({children}: {children: React.ReactNode}) => {
     loadStorageData();
   }, []);
 
-  async function loadStorageData(): Promise<void> {
+  const loadStorageData = async (): Promise<void> => {
     try {
       const authDataSerialized = await asyncStorage.getItem('@AuthData');
       if (authDataSerialized) {
@@ -32,14 +33,10 @@ const AuthProvider = ({children}: {children: React.ReactNode}) => {
     } finally {
       setLoading(false);
     }
-  }
+  };
 
   const signIn = async () => {
-    const authData = await authService.signIn(
-      'lucasgarcez@email.com',
-      '123456',
-    );
-
+    const authData = await authService.signIn('foo@example.com', '123456');
     setData(authData);
     asyncStorage.setItem('@AuthData', JSON.stringify(authData));
   };

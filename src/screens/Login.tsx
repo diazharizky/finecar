@@ -1,12 +1,11 @@
 import React, {useEffect} from 'react';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {Box, VStack} from '@gluestack-ui/themed';
 import {useTranslation} from 'react-i18next';
-
-import {FalconInput, FalconButton} from '../components';
+import {Box, VStack} from '@gluestack-ui/themed';
 
 import type {RootStackParamList} from './types';
-import {useStatusBar} from '../contexts/StatusBar';
+import {FalconInput, FalconButton} from '../components';
+import {useStatusBar} from '../contexts';
 import {lightColor} from '../consts/style';
 
 type LoginScreenProps = NativeStackScreenProps<
@@ -19,8 +18,8 @@ const LoginScreen = ({navigation}: LoginScreenProps) => {
   const {setBgColor, setStyle} = useStatusBar();
 
   useEffect(() => {
-    setBgColor(lightColor);
-    setStyle('dark-content');
+    setBgColor!(lightColor);
+    setStyle!('dark-content');
   }, []);
 
   return (
@@ -31,12 +30,7 @@ const LoginScreen = ({navigation}: LoginScreenProps) => {
         alignItems: 'center',
         justifyContent: 'center',
       }}>
-      <VStack
-        p="$5"
-        space="md"
-        style={{
-          width: '100%',
-        }}>
+      <VStack p="$5" space="md" style={{width: '100%'}}>
         <FalconInput
           placeholder={
             t('input_label_username') + '/' + t('input_label_email_address')

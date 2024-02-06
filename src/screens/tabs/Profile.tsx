@@ -6,7 +6,8 @@ import {useIsFocused} from '@react-navigation/native';
 
 import type {RootStackParamList} from '../types';
 import {FalconText, FalconButton} from '../../components';
-import {useAuth} from '../../contexts/Auth';
+import {useAuth, useStatusBar, useAppBar} from '../../contexts';
+import {mainColor} from '../../consts/style';
 
 const ProfileTabScreen = ({
   navigation,
@@ -14,9 +15,15 @@ const ProfileTabScreen = ({
   const {t} = useTranslation();
   const {data, loading} = useAuth();
   const isFocused = useIsFocused();
+  const {setBgColor, setStyle} = useStatusBar();
+  const {setVisibility} = useAppBar();
 
   useEffect(() => {
-    console.log('entering profile screen', isFocused);
+    if (isFocused) {
+      setBgColor!(mainColor);
+      setStyle!('light-content');
+      setVisibility!(true);
+    }
   }, [isFocused]);
 
   return (

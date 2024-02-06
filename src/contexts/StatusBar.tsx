@@ -15,7 +15,7 @@ const StatusBarContext = createContext<StatusBarContextProps>(
 );
 
 const StatusBarProvider = ({children}: {children: React.ReactNode}) => {
-  const [bgColor, setBgColor] = useState<string>(lightColor);
+  const [bgColor, setBgColor] = useState(lightColor);
   const [style, setStyle] = useState<StatusBarStyle>('dark-content');
 
   return (

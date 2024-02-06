@@ -1,14 +1,27 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Box, VStack, HStack, Switch} from '@gluestack-ui/themed';
 import {useTranslation} from 'react-i18next';
 import i18n from 'i18next';
+import {useIsFocused} from '@react-navigation/native';
 
 import {FalconText} from '../../components';
-import {mainColor} from '../../consts/style';
+import {mainColor, lightColor} from '../../consts/style';
+import {useStatusBar, useAppBar} from '../../contexts';
 
 const SettingsTabScreen = () => {
   const [lang, setLang] = React.useState(0);
   const {t} = useTranslation();
+  const isFocused = useIsFocused();
+  const {setBgColor, setStyle} = useStatusBar();
+  const {setVisibility} = useAppBar();
+
+  useEffect(() => {
+    if (isFocused) {
+      setBgColor!(lightColor);
+      setStyle!('dark-content');
+      setVisibility!(false);
+    }
+  }, [isFocused]);
 
   const changeLang = (val: boolean) => {
     i18n.changeLanguage(val ? 'en' : 'id');
