@@ -1,4 +1,4 @@
-const mainColor = '#E91E63';
+const mainColor = '#D50000';
 const lightColor = '#fff';
 
 export {mainColor, lightColor};

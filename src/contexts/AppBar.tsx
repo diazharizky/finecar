@@ -1,19 +1,23 @@
-import React, {createContext, useState, useContext} from 'react';
+import React, {createContext, useState, useContext, ReactNode} from 'react';
 
 type AppBarContextProps = {
   visible?: boolean;
   setVisibility?(visible: boolean): void;
+  content?: ReactNode;
+  setContent?(newContent: ReactNode): void;
 };
 
 const AppBarContext = createContext<AppBarContextProps>(
   {} as AppBarContextProps,
 );
 
-const AppBarProvider = ({children}: {children: React.ReactNode}) => {
+const AppBarProvider = ({children}: {children: ReactNode}) => {
   const [visible, setVisibility] = useState(false);
+  const [content, setContent] = useState<ReactNode>();
 
   return (
-    <AppBarContext.Provider value={{visible, setVisibility}}>
+    <AppBarContext.Provider
+      value={{visible, setVisibility, content, setContent}}>
       {children}
     </AppBarContext.Provider>
   );

@@ -9,8 +9,16 @@ const StatusBar = () => {
   const {bgColor, style} = useStatusBar();
 
   return (
-    <View style={{height: insets.top, backgroundColor: bgColor}}>
-      <RNStatusBar backgroundColor={bgColor} barStyle={style} />
+    <View
+      style={{
+        ...(bgColor !== 'transparent' && {height: insets.top}),
+        backgroundColor: bgColor,
+      }}>
+      <RNStatusBar
+        translucent={bgColor === 'transparent' ? true : false}
+        backgroundColor={bgColor}
+        barStyle={style}
+      />
     </View>
   );
 };

@@ -1,11 +1,9 @@
 import React from 'react';
-import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {StyleSheet} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {useTranslation} from 'react-i18next';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-import type {RootStackParamList} from './types';
 import {mainColor} from '../consts/style';
 
 import ExploreScreen from './tabs/Explore';
@@ -15,17 +13,12 @@ import SettingsScreen from './tabs/Settings';
 
 import {FalconText} from '../components';
 
-type TabsScreenProps = NativeStackScreenProps<
-  RootStackParamList,
-  'tabs-screen'
->;
-
 const styles = StyleSheet.create({
   baseLabel: {
     fontSize: 12,
     color: '#fff',
   },
-  label: {fontWeight: '600'},
+  label: {fontWeight: '500'},
   labelFocused: {fontWeight: 'bold'},
   icon: {
     fontSize: 24,
@@ -35,7 +28,7 @@ const styles = StyleSheet.create({
 
 const Tab = createBottomTabNavigator();
 
-const TabsScreen = ({}: TabsScreenProps) => {
+const TabsScreen = () => {
   const {t} = useTranslation();
 
   return (
@@ -53,7 +46,7 @@ const TabsScreen = ({}: TabsScreenProps) => {
             <FalconText
               style={{
                 ...styles.baseLabel,
-                ...(focused ? styles.label : styles.labelFocused),
+                ...(focused ? styles.labelFocused : styles.label),
               }}>
               {t('tab_label_explore')}
             </FalconText>
@@ -75,7 +68,7 @@ const TabsScreen = ({}: TabsScreenProps) => {
             <FalconText
               style={{
                 ...styles.baseLabel,
-                ...(focused ? styles.label : styles.labelFocused),
+                ...(focused ? styles.labelFocused : styles.label),
               }}>
               {t('tab_label_messages')}
             </FalconText>
@@ -97,7 +90,7 @@ const TabsScreen = ({}: TabsScreenProps) => {
             <FalconText
               style={{
                 ...styles.baseLabel,
-                ...(focused ? styles.label : styles.labelFocused),
+                ...(focused ? styles.labelFocused : styles.label),
               }}>
               {t('tab_label_profile')}
             </FalconText>
@@ -119,7 +112,7 @@ const TabsScreen = ({}: TabsScreenProps) => {
             <FalconText
               style={{
                 ...styles.baseLabel,
-                ...(focused ? styles.label : styles.labelFocused),
+                ...(focused ? styles.labelFocused : styles.label),
               }}>
               {t('tab_label_settings')}
             </FalconText>

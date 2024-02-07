@@ -17,6 +17,7 @@ import {StatusBar, FalconAppBar} from './src/components';
 
 import TabsScreen from './src/screens/Tabs';
 import LoginScreen from './src/screens/Login';
+import NotificationsScreen from './src/screens/Notifications';
 
 const RootStack = createStackNavigator<RootStackParamList>();
 
@@ -33,13 +34,17 @@ const App = () => {
   return (
     <SafeAreaProvider style={{flex: 1}}>
       <GeneralProviders>
-        <StatusBar />
         <GluestackUIProvider config={config}>
-          <FalconAppBar />
           <NavigationContainer>
+            <StatusBar />
+            <FalconAppBar />
             <RootStack.Navigator screenOptions={{headerShown: false}}>
               <RootStack.Screen name="tabs-screen" component={TabsScreen} />
               <RootStack.Screen name="login-screen" component={LoginScreen} />
+              <RootStack.Screen
+                name="notifications-screen"
+                component={NotificationsScreen}
+              />
             </RootStack.Navigator>
           </NavigationContainer>
         </GluestackUIProvider>

@@ -17,7 +17,7 @@ const FalconInput = (props: FalconInputProps) => {
       isReadOnly={props.readonly}
       isDisabled={props.disabled}>
       <InputField
-        style={baseStyle.text}
+        style={{...baseStyle.text, backgroundColor: '#fff'}}
         type={props.type}
         placeholder={props.placeholder}
       />
