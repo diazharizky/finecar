@@ -5,7 +5,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {config} from '@gluestack-ui/config';
 import {GluestackUIProvider} from '@gluestack-ui/themed';
-import {NavigationContainer} from '@react-navigation/native';
+import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
 
 import type {RootStackParamList} from './src/screens/types';
 import {
@@ -35,10 +35,20 @@ const App = () => {
     <SafeAreaProvider style={{flex: 1}}>
       <GeneralProviders>
         <GluestackUIProvider config={config}>
-          <NavigationContainer>
+          <NavigationContainer
+            theme={{
+              ...DefaultTheme,
+              colors: {
+                ...DefaultTheme.colors,
+                background: '#fff',
+              },
+            }}>
             <StatusBar />
             <FalconAppBar />
-            <RootStack.Navigator screenOptions={{headerShown: false}}>
+            <RootStack.Navigator
+              screenOptions={{
+                headerShown: false,
+              }}>
               <RootStack.Screen name="tabs-screen" component={TabsScreen} />
               <RootStack.Screen name="login-screen" component={LoginScreen} />
               <RootStack.Screen

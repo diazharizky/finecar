@@ -10,5 +10,6 @@
   "input_label_password": "Kata sandi",
   "btn_label_login": "Login",
   "message_login_suggestion": "Silahkan login untuk melanjutkan",
-  "message_app_is_loading": "Sedang memuat, mohon tunggu"
+  "message_app_is_loading": "Sedang memuat, mohon tunggu",
+  "cancel_login_label": "Kembali"
 }

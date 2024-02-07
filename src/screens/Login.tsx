@@ -1,12 +1,11 @@
 import React, {useEffect} from 'react';
 import {useTranslation} from 'react-i18next';
 import {Box, VStack, HStack, Pressable} from '@gluestack-ui/themed';
-import Icon from 'react-native-vector-icons/Ionicons';
 import {ImageBackground} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {useNavigation} from '@react-navigation/native';
 
-import {FalconInput, FalconButton} from '../components';
+import {FalconInput, FalconButton, FalconText} from '../components';
 import {useStatusBar, useAppBar} from '../contexts';
 
 const LoginScreen = () => {
@@ -27,13 +26,9 @@ const LoginScreen = () => {
       <HStack p="$4" zIndex={99} position="absolute" marginTop={insets.top}>
         <HStack>
           <Pressable onPress={() => navigation.goBack()}>
-            <Icon
-              name="chevron-back"
-              style={{
-                fontSize: 24,
-                color: '#fff',
-              }}
-            />
+            <FalconText style={{color: '#fff', fontWeight: '500'}}>
+              {t('cancel_login_label')}
+            </FalconText>
           </Pressable>
         </HStack>
         <HStack></HStack>

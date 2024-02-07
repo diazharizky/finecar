@@ -10,5 +10,6 @@
   "input_label_password": "Password",
   "btn_label_login": "Log in",
   "message_login_suggestion": "Please log in to continue",
-  "message_app_is_loading": "App is loading, please wait"
+  "message_app_is_loading": "App is loading, please wait",
+  "cancel_login_label": "Cancel"
 }

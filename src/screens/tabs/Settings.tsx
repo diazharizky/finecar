@@ -29,37 +29,35 @@ const SettingsTabScreen = () => {
   };
 
   return (
-    <Box backgroundColor="#fff">
-      <VStack>
-        <Box style={{margin: 16}}>
-          <HStack>
-            <Box w="$56">
-              <FalconText>{t('language')}</FalconText>
-            </Box>
-            <Box>
-              <HStack space="sm" alignItems="center">
-                <FalconText bold={lang == 0}>ID</FalconText>
-                <Switch
-                  onValueChange={val => changeLang(val)}
-                  sx={{
-                    _light: {
-                      props: {
-                        trackColor: {
-                          false: mainColor,
-                          true: mainColor,
-                        },
-                        ios_backgroundColor: mainColor,
+    <VStack>
+      <Box style={{margin: 16}}>
+        <HStack>
+          <Box w="$56">
+            <FalconText>{t('language')}</FalconText>
+          </Box>
+          <Box>
+            <HStack space="sm" alignItems="center">
+              <FalconText bold={lang == 0}>ID</FalconText>
+              <Switch
+                onValueChange={val => changeLang(val)}
+                sx={{
+                  _light: {
+                    props: {
+                      trackColor: {
+                        false: mainColor,
+                        true: mainColor,
                       },
+                      ios_backgroundColor: mainColor,
                     },
-                  }}
-                />
-                <FalconText bold={lang == 1}>EN</FalconText>
-              </HStack>
-            </Box>
-          </HStack>
-        </Box>
-      </VStack>
-    </Box>
+                  },
+                }}
+              />
+              <FalconText bold={lang == 1}>EN</FalconText>
+            </HStack>
+          </Box>
+        </HStack>
+      </Box>
+    </VStack>
   );
 };
 
